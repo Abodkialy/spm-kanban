@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project tasks</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Project Manager</h1>
+    <nav>
+      <a href="/index.html">Projects</a>
+      <a href="/members.html">Team members</a>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <section class="card">
+      <p><a href="/index.html">&larr; All projects</a></p>
+      <h2 id="project-title">Project</h2>
+      <p id="project-meta" class="muted"></p>
+      <p id="project-description"></p>
+    </section>
+
+    <section class="card">
+      <h2>Create task</h2>
+      <p id="task-error" class="error" hidden></p>
+      <form id="task-form">
+        <label>
+          Title
+          <input name="title" type="text" required>
+        </label>
+        <label>
+          Description
+          <textarea name="description" rows="3"></textarea>
+        </label>
+        <div class="row">
+          <label>
+            Priority
+            <select name="priority" required>
+              <option value="high">High</option>
+              <option value="medium" selected>Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </label>
+          <label>
+            Parent task
+            <select name="parent_id">
+              <option value="">None (main task)</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit">Save task</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Tasks</h2>
+      <div id="task-list"></div>
+    </section>
+  </main>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/tasks.js"></script>
+</body>
+</html>
