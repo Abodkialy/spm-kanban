@@ -1,0 +1,10 @@
+{
+  "name": "spm-kanban",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simple project and task management system for the Software Project Management course.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  }
+}
