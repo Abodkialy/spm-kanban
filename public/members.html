@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Team members</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Project Manager</h1>
+    <nav>
+      <a href="/index.html">Projects</a>
+      <a href="/members.html">Team members</a>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <section class="card">
+      <h2>Add team member</h2>
+      <p id="member-error" class="error" hidden></p>
+      <form id="member-form" class="inline-form">
+        <label>
+          Name
+          <input name="name" type="text" required>
+        </label>
+        <button type="submit">Add member</button>
+      </form>
+      <p class="hint">Members are stored now so assignment can be added in part 2.</p>
+    </section>
+
+    <section class="card">
+      <h2>Members</h2>
+      <ul id="member-list" class="plain-list"></ul>
+    </section>
+  </main>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/members.js"></script>
+</body>
+</html>
