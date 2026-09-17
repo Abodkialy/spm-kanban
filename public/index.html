@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Project Manager</h1>
+    <nav>
+      <a href="/index.html">Projects</a>
+      <a href="/members.html">Team members</a>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <section class="card">
+      <h2>Create project</h2>
+      <p id="project-error" class="error" hidden></p>
+      <form id="project-form">
+        <label>
+          Name
+          <input name="name" type="text" required>
+        </label>
+        <label>
+          Description
+          <textarea name="description" rows="3"></textarea>
+        </label>
+        <div class="row">
+          <label>
+            Start date
+            <input name="start_date" type="date" required>
+          </label>
+          <label>
+            Expected end date
+            <input name="expected_end_date" type="date" required>
+          </label>
+        </div>
+        <button type="submit">Save project</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Projects</h2>
+      <div id="project-list"></div>
+    </section>
+  </main>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/projects.js"></script>
+</body>
+</html>
