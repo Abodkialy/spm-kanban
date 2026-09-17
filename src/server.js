@@ -60,16 +60,83 @@ function createApp() {
       },
     },
     {
-      method: "GET",
-      pattern: /^\/api\/tasks\/(\d+)\/assignments$/,
-      handler: (req, res, id) => {
-        if (!taskModel.getById(Number(id))) {
-          sendJson(res, 404, { error: "Task not found." });
-          return;
-        }
-        sendJson(res, 200, { assignments: assignmentModel.listByTask(Number(id)) });
-      },
-    },
+  method: "GET",
+  pattern: /^\/api\/tasks\/(\d+)\/assignments$/,
+  handler: (req, res, id) => {
+    if (!taskModel.getById(Number(id))) {
+      sendJson(res, 404, { error: "Task not found." });
+      return;
+    }
+
+    sendJson(res, 200, {
+      assignments: assignmentModel.listByTask(Number(id)),
+    });
+  },
+},
+
+{
+  method: "POST",
+  pattern: /^\/api\/tasks\/(\d+)\/assignments$/,
+  handler: async (req, res, id) => {
+    const taskId = Number(id);
+
+    if (!taskModel.getById(taskId)) {
+      sendJson(res, 404, { error: "Task not found." });
+      return;
+    }
+
+    try {
+      const body = await require("./http/utils").readBody(req);
+
+      const userId = Number(body.user_id);
+
+      if (!Number.isInteger(userId)) {
+        sendJson(res, 400, { error: "Valid user_id is required." });
+        return;
+      }
+
+      if (!userModel.getById(userId)) {
+        sendJson(res, 404, { error: "Member not found." });
+        return;
+      }
+
+      const result = assignmentModel.assign(taskId, userId);
+
+      if (result.error) {
+        sendJson(res, 400, { error: result.error });
+        return;
+      }
+
+      sendJson(res, 201, {
+        assignments: result.value,
+      });
+    } catch (error) {
+      sendJson(res, 400, {
+        error: error.message || "Invalid request.",
+      });
+    }
+  },
+},
+
+{
+  method: "DELETE",
+  pattern: /^\/api\/tasks\/(\d+)\/assignments\/(\d+)$/,
+  handler: (req, res, taskId, userId) => {
+    if (!taskModel.getById(Number(taskId))) {
+      sendJson(res, 404, { error: "Task not found." });
+      return;
+    }
+
+    const result = assignmentModel.unassign(
+      Number(taskId),
+      Number(userId)
+    );
+
+    sendJson(res, 200, {
+      assignments: result.value,
+    });
+  },
+},
     {
       method: "GET",
       pattern: /^\/api\/projects\/(\d+)\/activity-logs$/,
