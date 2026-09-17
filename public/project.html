@@ -6,62 +6,186 @@
   <title>Project tasks</title>
   <link rel="stylesheet" href="/css/styles.css">
 </head>
+
 <body>
-  <header class="topbar">
-    <h1>Project Manager</h1>
-    <nav>
-      <a href="/index.html">Projects</a>
-      <a href="/members.html">Team members</a>
-    </nav>
-  </header>
 
-  <main class="layout">
-    <section class="card">
-      <p><a href="/index.html">&larr; All projects</a></p>
-      <h2 id="project-title">Project</h2>
-      <p id="project-meta" class="muted"></p>
-      <p id="project-description"></p>
-    </section>
+<header class="topbar">
+  <h1>Project Manager</h1>
 
-    <section class="card">
-      <h2>Create task</h2>
-      <p id="task-error" class="error" hidden></p>
-      <form id="task-form">
+  <nav>
+    <a href="/index.html">Projects</a>
+    <a href="/members.html">Team members</a>
+  </nav>
+</header>
+
+<main class="layout">
+
+  <section class="card">
+    <p>
+      <a href="/index.html">&larr; All projects</a>
+    </p>
+
+    <h2 id="project-title">Project</h2>
+
+    <p id="project-meta" class="muted"></p>
+
+    <p id="project-description"></p>
+  </section>
+
+
+  <!-- CREATE TASK -->
+
+  <section class="card">
+
+    <h2>Create task</h2>
+
+    <p id="task-error" class="error" hidden></p>
+
+    <form id="task-form">
+
+      <label>
+        Title
+        <input name="title" type="text" required>
+      </label>
+
+      <label>
+        Description
+        <textarea name="description" rows="3"></textarea>
+      </label>
+
+      <div class="row">
+
         <label>
-          Title
-          <input name="title" type="text" required>
+          Priority
+
+          <select name="priority" required>
+            <option value="high">High</option>
+            <option value="medium" selected>Medium</option>
+            <option value="low">Low</option>
+          </select>
         </label>
+
         <label>
-          Description
-          <textarea name="description" rows="3"></textarea>
+          Parent task
+
+          <select name="parent_id">
+            <option value="">None (main task)</option>
+          </select>
         </label>
-        <div class="row">
-          <label>
-            Priority
-            <select name="priority" required>
-              <option value="high">High</option>
-              <option value="medium" selected>Medium</option>
-              <option value="low">Low</option>
-            </select>
-          </label>
-          <label>
-            Parent task
-            <select name="parent_id">
-              <option value="">None (main task)</option>
-            </select>
-          </label>
+
+      </div>
+
+      <button type="submit">
+        Save task
+      </button>
+
+    </form>
+
+  </section>
+
+
+  <!-- KANBAN -->
+
+  <section class="card">
+
+    <h2>Kanban Board</h2>
+
+    <div id="kanban-error" class="error" hidden></div>
+
+    <div class="kanban">
+
+      <div class="kanban-column">
+
+        <h3>New</h3>
+
+        <div
+          id="kanban-new"
+          class="kanban-tasks"
+          data-status="new">
         </div>
-        <button type="submit">Save task</button>
-      </form>
-    </section>
 
-    <section class="card">
-      <h2>Tasks</h2>
-      <div id="task-list"></div>
-    </section>
-  </main>
+      </div>
 
-  <script src="/js/api.js"></script>
-  <script src="/js/tasks.js"></script>
+
+      <div class="kanban-column">
+
+        <h3>In Progress</h3>
+
+        <div
+          id="kanban-in-progress"
+          class="kanban-tasks"
+          data-status="in_progress">
+        </div>
+
+      </div>
+
+
+      <div class="kanban-column">
+
+        <h3>Done</h3>
+
+        <div
+          id="kanban-done"
+          class="kanban-tasks"
+          data-status="done">
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- TASKS -->
+
+  <section class="card">
+
+    <h2>All Tasks</h2>
+
+    <div id="task-list"></div>
+
+  </section>
+
+
+  <!-- ACTIVITY LOG -->
+
+  <section class="card">
+
+    <h2>Activity Log</h2>
+
+    <div id="activity-log">
+
+      <p class="empty">
+        No activity yet.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- REPORT -->
+
+  <section class="card">
+
+    <h2>Project Report</h2>
+
+    <div id="report">
+
+      <p class="empty">
+        Loading report...
+      </p>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<script src="/js/api.js"></script>
+<script src="/js/tasks.js"></script>
+
 </body>
 </html>
