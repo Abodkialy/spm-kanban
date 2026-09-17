@@ -6,6 +6,15 @@ This repository is the course project for Software Project Management.
 Part 1 (this branch of work) covers projects, team members, and tasks.
 Part 2 will cover assignment, Kanban status tracking, activity log, and reports.
 
+## Features (part 1)
+
+- Create a project with name, description, start date, and expected end date
+- Add team members
+- Create tasks inside a project
+- Set task priority: High, Medium, Low
+- Create a parent task and attach subtasks
+- SQLite models ready for assignment, Kanban status, activity log, and reports
+
 ## Technologies
 
 - HTML, CSS, and JavaScript for the user interface
@@ -24,6 +33,19 @@ node src/server.js
 ```
 
 Open http://localhost:3000
+
+The SQLite file is created at `data/app.db` on first run.
+
+## Project structure
+
+```text
+public/             User interface (HTML, CSS, JS)
+src/server.js       HTTP server and routes
+src/controllers/    Request handlers
+src/models/         Database access
+src/db/             Schema and connection
+docs/erd.md         Entity relationship diagram
+```
 
 ## Git workflow
 
